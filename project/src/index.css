@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #06070d;
+  --neon-purple: #6a5cff;
+  --neon-cyan: #00d4ff;
+  --neon-pink: #ff4ecd;
+  --text: #eef1f8;
+  --muted: #9aa3bd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0b14;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6a5cff, #00d4ff);
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(0, 212, 255, 0.3);
+  color: #eef1f8;
+}
+
+/* Glass card */
+.glass {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(106, 92, 255, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px rgba(106, 92, 255, 0.2);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #6a5cff 0%, #00d4ff 50%, #ff4ecd 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 6s ease infinite;
+}
+
+.gradient-text-static {
+  background: linear-gradient(135deg, #00d4ff 0%, #6a5cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Neon glow */
+.neon-glow-purple {
+  box-shadow: 0 0 30px rgba(106, 92, 255, 0.4);
+}
+.neon-glow-cyan {
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+}
+.neon-glow-pink {
+  box-shadow: 0 0 30px rgba(255, 78, 205, 0.4);
+}
+
+/* Radial gradient background for non-home pages */
+.radial-bg {
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(106, 92, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(0, 212, 255, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 78, 205, 0.04) 0%, transparent 70%),
+    #06070d;
+}
+
+/* Tilt button base */
+.tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease;
+  will-change: transform;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Primary button */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+  background: linear-gradient(135deg, #6a5cff, #00d4ff);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  box-shadow: 0 10px 40px rgba(106, 92, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Secondary/outline button */
+.btn-secondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  border-color: rgba(0, 212, 255, 0.5);
+  background: rgba(0, 212, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Input styles */
+.input-field {
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  border-radius: 0.625rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+.input-field:focus {
+  border-color: rgba(0, 212, 255, 0.5);
+  background: rgba(0, 212, 255, 0.03);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+}
+.input-field::placeholder {
+  color: rgba(154, 163, 189, 0.5);
+}
+select.input-field {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%239aa3bd' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+select.input-field option {
+  background: #0a0b14;
+  color: #eef1f8;
+}
+
+/* Section padding */
+.section-padding {
+  padding: 5rem 1.5rem;
+}
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 6rem 3rem;
+  }
+}
+
+/* Grid background pattern */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(106, 92, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(106, 92, 255, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Glow orb */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Typing cursor */
+.typing-cursor::after {
+  content: '|';
+  color: #00d4ff;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Print styles for resume */
+@media print {
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .no-print { display: none !important; }
+  .print-area {
+    color: #000 !important;
+    background: #fff !important;
+  }
+  .print-area * {
+    color: #000 !important;
+    border-color: #ccc !important;
+  }
+}
