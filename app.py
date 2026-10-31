@@ -17,6 +17,14 @@ from flask import Flask, jsonify, render_template, request
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 INQUIRY_FILE = os.path.join(BASE_DIR, "inquiries.jsonl")
 
+# Fail with a clear message if the folders were not uploaded together with app.py.
+for _folder in ("templates", "static"):
+    if not os.path.isdir(os.path.join(BASE_DIR, _folder)):
+        raise RuntimeError(
+            f"The '{_folder}' folder was not found next to app.py. "
+            "Upload the whole project folder (app.py, templates/, static/) to GitHub."
+        )
+
 OWNER = {
     "site": "Ninad Portfolio",
     "name": "Ninad Goliwale",
@@ -200,4 +208,7 @@ def inquiry():
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=False, threaded=True)
+    # On Render (and similar hosts) the PORT variable is set and the app must listen on 0.0.0.0.
+    port = int(os.environ.get("PORT", 5000))
+    host = "0.0.0.0" if "PORT" in os.environ else "127.0.0.1"
+    app.run(host=host, port=port, debug=False, threaded=True)
