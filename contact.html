@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Get a website - {{ owner.site }}{% endblock %}
+{% block content %}
+<section class="page-head reveal">
+  <h1>Tell me about your website</h1>
+  <p class="lead">Choose your topic, fill in your details and press the button. Your own email app (or Gmail) opens with the message already written and addressed to {{ owner.name }}.</p>
+</section>
+
+<section class="grid-contact">
+  <form id="inquiry-form" class="card form reveal" data-owner="{{ owner.email }}" data-name="{{ owner.name }}" novalidate>
+    <label for="topic">What is your website about?</label>
+    <select id="topic" name="topic" required>
+      <option value="">Choose a topic...</option>
+      {% for t in topics %}<option value="{{ t }}">{{ t }}</option>{% endfor %}
+    </select>
+
+    <div class="row">
+      <div>
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div>
+        <label for="phone">Phone number</label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+      </div>
+    </div>
+
+    <label for="email">Your email</label>
+    <input id="email" name="email" type="email" autocomplete="email" required>
+
+    <label for="timeline">When do you need it?</label>
+    <select id="timeline" name="timeline">
+      {% for t in timelines %}<option value="{{ t }}">{{ t }}</option>{% endfor %}
+    </select>
+
+    <label for="details">Details (pages, features, ideas)</label>
+    <textarea id="details" name="details" rows="5" maxlength="1200" placeholder="For example: an online shop with 20 products, payment page and an admin login."></textarea>
+
+    <button class="btn primary" type="submit">Create my email</button>
+    <p id="form-msg" class="msg" role="status"></p>
+  </form>
+
+  <aside class="side">
+    <div class="card tilt reveal">
+      <h3>Direct contact</h3>
+      <p><a href="mailto:{{ owner.email }}">{{ owner.email }}</a></p>
+      <p class="muted">You can also write to me directly.</p>
+    </div>
+    <div class="card tilt reveal">
+      <h3>Good to know</h3>
+      <p class="muted">Nothing is sent until you press send in your own email. A copy of the form may also be saved on this site so the request is not lost.</p>
+    </div>
+  </aside>
+</section>
+
+<section id="result" class="card result" hidden>
+  <h3>Your message is ready</h3>
+  <p class="muted">If your email app did not open, use one of the buttons below.</p>
+  <pre id="preview"></pre>
+  <div class="cta left">
+    <a id="mail-link" class="btn primary" href="#">Open my email app</a>
+    <a id="gmail-link" class="btn" href="#" target="_blank" rel="noopener">Open in Gmail</a>
+    <button id="copy-btn" class="btn" type="button">Copy message</button>
+  </div>
+  <p id="copy-msg" class="msg"></p>
+</section>
+{% endblock %}

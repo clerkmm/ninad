@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Projects - {{ owner.site }}{% endblock %}
+{% block content %}
+<section class="page-head reveal">
+  <h1>Projects</h1>
+  <p class="lead">A few things I have built. (Sample entries - replace them with your real projects in <code>app.py</code>.)</p>
+</section>
+
+<section class="grid3">
+  {% for p in resume.projects %}
+  <article class="card tilt reveal">
+    <h3>{{ p.name }}</h3>
+    <p>{{ p.desc }}</p>
+    <div class="chips">
+      {% for t in p.tags %}<span class="chip">{{ t }}</span>{% endfor %}
+    </div>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="section cta-band reveal">
+  <h2>Have an idea?</h2>
+  <p>Tell me what you want to build.</p>
+  <a class="btn primary" href="{{ url_for('contact') }}">Request a website</a>
+</section>
+{% endblock %}

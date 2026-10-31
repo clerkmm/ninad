@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Resume - {{ owner.site }}{% endblock %}
+{% block content %}
+<section class="page-head reveal no-print">
+  <h1>Resume</h1>
+  <p class="lead">Sample details for now. Replace them in <code>app.py</code> with your real information.</p>
+  <div class="cta">
+    <button class="btn primary" type="button" id="print-btn">Download / print as PDF</button>
+    <a class="btn" href="mailto:{{ resume.email }}">Email me</a>
+  </div>
+</section>
+
+<article class="resume card">
+  <header class="r-head">
+    <div>
+      <h2>{{ resume.name }}</h2>
+      <p class="role">{{ resume.role }}</p>
+    </div>
+    <ul class="contact-list">
+      <li>Age: {{ resume.age }}</li>
+      <li><a href="mailto:{{ resume.email }}">{{ resume.email }}</a></li>
+      <li>{{ resume.phone }}</li>
+      {% for label, url in resume.links %}<li><a href="{{ url }}" target="_blank" rel="noopener">{{ label }}</a></li>{% endfor %}
+    </ul>
+  </header>
+
+  <section class="r-sec">
+    <h3>Summary</h3>
+    <p>{{ resume.summary }}</p>
+  </section>
+
+  <section class="r-sec">
+    <h3>Skills</h3>
+    <div class="bars">
+      {% for name, level in resume.skills %}
+      <div class="bar-row reveal">
+        <div class="bar-label"><span>{{ name }}</span><span>{{ level }}%</span></div>
+        <div class="bar"><span style="--w: {{ level }}%"></span></div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="chips mt">
+      {% for t in resume.tools %}<span class="chip">{{ t }}</span>{% endfor %}
+    </div>
+  </section>
+
+  <section class="r-sec">
+    <h3>Experience</h3>
+    {% for job in resume.experience %}
+    <div class="entry">
+      <div class="entry-top"><strong>{{ job.title }}</strong><span class="muted">{{ job.years }}</span></div>
+      <div class="muted">{{ job.place }}</div>
+      <ul class="list">{% for p in job.points %}<li>{{ p }}</li>{% endfor %}</ul>
+    </div>
+    {% endfor %}
+  </section>
+
+  <section class="r-sec">
+    <h3>Education</h3>
+    {% for ed in resume.education %}
+    <div class="entry">
+      <div class="entry-top"><strong>{{ ed.title }}</strong><span class="muted">{{ ed.years }}</span></div>
+      <div class="muted">{{ ed.place }}</div>
+      {% if ed.note %}<p>{{ ed.note }}</p>{% endif %}
+    </div>
+    {% endfor %}
+  </section>
+
+  <section class="r-sec">
+    <h3>Projects</h3>
+    {% for p in resume.projects %}
+    <div class="entry">
+      <div class="entry-top"><strong>{{ p.name }}</strong><span class="muted">{{ p.tags | join(' / ') }}</span></div>
+      <p>{{ p.desc }}</p>
+    </div>
+    {% endfor %}
+  </section>
+
+  <section class="r-sec two">
+    <div>
+      <h3>Achievements</h3>
+      <ul class="list">{% for a in resume.achievements %}<li>{{ a }}</li>{% endfor %}</ul>
+    </div>
+    <div>
+      <h3>Languages</h3>
+      <ul class="list">{% for l in resume.languages %}<li>{{ l }}</li>{% endfor %}</ul>
+    </div>
+  </section>
+</article>
+{% endblock %}

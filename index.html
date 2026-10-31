@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}{{ owner.site }} - Python, Java &amp; Node.js developer{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-text reveal">
+    <p class="eyebrow">Hi, I'm {{ owner.name }}</p>
+    <h1>I build <span class="grad">fast, modern websites</span> and edit gameplay videos.</h1>
+    <p class="lead">{{ resume.age }}-year-old developer who has mastered Python, Java and Node.js. Tell me what website you need and I'll bring it to life.</p>
+    <div class="cta">
+      <a class="btn primary" href="{{ url_for('contact') }}">Start your website</a>
+      <a class="btn" href="{{ url_for('resume_page') }}">View resume</a>
+    </div>
+  </div>
+
+  <div class="hero-3d" aria-hidden="true">
+    <div class="scene">
+      <div class="cube">
+        <div class="face f1">Python</div>
+        <div class="face f2">Java</div>
+        <div class="face f3">Node.js</div>
+        <div class="face f4">Flask</div>
+        <div class="face f5">HTML</div>
+        <div class="face f6">CSS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="reveal">What I do</h2>
+  <div class="grid3">
+    <article class="card tilt reveal">
+      <div class="icon">&lt;/&gt;</div>
+      <h3>Websites &amp; web apps</h3>
+      <p>E-commerce, portfolios, business sites, blogs and dashboards, built to be quick and easy to use.</p>
+    </article>
+    <article class="card tilt reveal">
+      <div class="icon">&#9881;</div>
+      <h3>Backend &amp; automation</h3>
+      <p>APIs, databases and scripts in Python, Java and Node.js, with multi-threading where it helps.</p>
+    </article>
+    <article class="card tilt reveal">
+      <div class="icon">&#9654;</div>
+      <h3>Video editing</h3>
+      <p>Gameplay edits with voice-over, subtitles, speed ramps and a clean cinematic look.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="reveal">How a website request works</h2>
+  <ol class="steps reveal">
+    <li><strong>Choose your topic</strong> - e-commerce, portfolio, business or something else.</li>
+    <li><strong>Fill in your details</strong> - name, email, phone and what you need.</li>
+    <li><strong>Send it by email</strong> - your own email app opens with the message ready, addressed to me.</li>
+  </ol>
+  <a class="btn primary" href="{{ url_for('contact') }}">Request a website</a>
+</section>
+{% endblock %}

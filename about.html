@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}About - {{ owner.site }}{% endblock %}
+{% block content %}
+<section class="page-head reveal">
+  <h1>About me</h1>
+  <p class="lead">{{ resume.summary }}</p>
+</section>
+
+<section class="grid2">
+  <article class="card tilt reveal">
+    <h3>Quick facts</h3>
+    <ul class="facts">
+      <li><span>Name</span> {{ resume.name }}</li>
+      <li><span>Age</span> {{ resume.age }}</li>
+      <li><span>Role</span> {{ resume.role }}</li>
+      <li><span>Languages</span> {{ resume.languages | join(', ') }}</li>
+      <li><span>Email</span> <a href="mailto:{{ resume.email }}">{{ resume.email }}</a></li>
+    </ul>
+  </article>
+
+  <article class="card tilt reveal">
+    <h3>Tools I use</h3>
+    <div class="chips">
+      {% for t in resume.tools %}<span class="chip">{{ t }}</span>{% endfor %}
+    </div>
+    <h3 class="mt">Achievements</h3>
+    <ul class="list">
+      {% for a in resume.achievements %}<li>{{ a }}</li>{% endfor %}
+    </ul>
+  </article>
+</section>
+
+<section class="section">
+  <h2 class="reveal">How I work</h2>
+  <div class="grid3">
+    <article class="card tilt reveal"><h3>Clear plan</h3><p>We agree on the topic, pages and features before I start, so there are no surprises.</p></article>
+    <article class="card tilt reveal"><h3>Clean code</h3><p>Fast pages, tidy structure and a design that looks good on phones and desktops.</p></article>
+    <article class="card tilt reveal"><h3>Honest updates</h3><p>You see progress as it happens and can ask for changes along the way.</p></article>
+  </div>
+</section>
+{% endblock %}
